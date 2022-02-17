@@ -19,10 +19,10 @@ ENV GOOS=linux
 # build the binary with debug information removed
 RUN go build -mod=vendor -ldflags '-w -s' -a -installsuffix cgo -o server
 
-FROM alpine:latest
+FROM arm64v8/alpine
 
 # copy static ffmpeg to use later 
-COPY --from=ffmpeg /usr/local /usr/local
+#COPY --from=ffmpeg /usr/local /usr/local
 
 # install additional dependencies for ffmpeg
 RUN apk add --no-cache --update libgcc libstdc++ ca-certificates libcrypto1.1 libssl1.1 libgomp expat
