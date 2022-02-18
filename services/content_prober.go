@@ -82,12 +82,7 @@ func (s *ContentProbe) Get() (*cp.ProbeReply, error) {
 func (s *ContentProbe) get() (pr *cp.ProbeReply, err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(s.timeout)*time.Second)
 	defer cancel()
-	if s.host == "" {
-		pr, err = s.localProbe(ctx)
-	} else {
-
-		pr, err = s.remoteProbe(ctx)
-	}
+	pr, err = s.localProbe(ctx)
 
 	if err != nil {
 		return nil, errors.Wrap(err, "Failed to probe")
