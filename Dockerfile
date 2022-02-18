@@ -22,7 +22,9 @@ FROM arm64v8/alpine
 RUN apk add --no-cache --update libgcc libstdc++ ca-certificates libcrypto1.1 libssl1.1 libgomp expat
 
 COPY ffmpeg/ffmpeg /usr/local/bin
+RUN chmod +x /usr/local/bin/ffmpeg
 COPY ffmpeg/ffprobe /usr/local/bin
+RUN chmod +x /usr/local/bin/ffprobe
 
 # copy our static linked library
 COPY --from=build /app/server .
