@@ -135,10 +135,11 @@ func (s *ContentProbe) remoteProbe(ctx context.Context) (*cp.ProbeReply, error) 
 
 func (s *ContentProbe) localProbe(ctx context.Context) (*cp.ProbeReply, error) {
 	done := make(chan error)
-	ffprobe, err := exec.LookPath("ffprobe")
-	if err != nil {
-		return nil, errors.Wrap(err, "Unable to find ffprobe")
-	}
+	//ffprobe, err := exec.LookPath("ffprobe")
+	//if err != nil {
+	//	return nil, errors.Wrap(err, "Unable to find ffprobe")
+	//}
+	ffprobe := "/usr/bin/ffprobe"
 	parsedURL, err := u.Parse(s.input)
 	if err != nil {
 		return nil, errors.Wrap(err, "Unable to parse url")
