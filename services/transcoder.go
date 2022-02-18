@@ -37,11 +37,10 @@ func (s *Transcoder) Close() error {
 	return nil
 }
 func (s *Transcoder) Serve() (err error) {
-	//ffmpeg, err := exec.LookPath("ffmpeg")
-	//if err != nil {
-	//	return errors.Wrap(err, "Failed to find ffmpeg")
-	//}
-	ffmpeg := "/usr/bin/ffmpeg"
+	ffmpeg, err := exec.LookPath("ffmpeg")
+	if err != nil {
+		return errors.Wrap(err, "Failed to find ffmpeg")
+	}
 	hls, err := s.h.Get()
 	if err != nil {
 		return errors.Wrap(err, "Failed to get hls")
